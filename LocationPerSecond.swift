@@ -13,6 +13,7 @@ struct LocationManager:  NSObject, ObservableObject, CLLocationManagerDelegate {
                 longitudinalMeters: 1000.0
             )
         }
+        // 旧コードではここでspotlistへのappend処理を行なっていた
     }
     
     func appendtospotlist() {
@@ -21,10 +22,16 @@ struct LocationManager:  NSObject, ObservableObject, CLLocationManagerDelegate {
 }
 
 // in Viewfile
-.onAppear() {
-    Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-        if (self.tracking) {
-            self.manager.appendtospotlist()
+struct ContentView: View {
+    //メンバ省略
+    var body: some View {
+        //UI省略
+    }
+    .onAppear() {
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            if (self.tracking) {
+                self.manager.appendtospotlist()
+            }
         }
     }
 }
