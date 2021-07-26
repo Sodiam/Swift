@@ -2,6 +2,7 @@ var spotlist // 位置情報データをSpotオブジェクトに変換したも
 
 struct LocationManager:  NSObject, ObservableObject, CLLocationManagerDelegate {
     //各メンバは省略
+    //distanceFilterの値が大きいとうまく更新できない
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locations.last.map {
             let center = CLLocationCoordinate2D(
